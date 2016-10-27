@@ -35,12 +35,16 @@ public class Leg {
      * @param url page to search
      * @return list of links found on the page
      */
-    private Elements crawl(String url) {
+    private Elements crawl(String url) throws PageNotFoundException{
         sourceUrl = url;
         Elements linksOnPage = null;
         try {
             Connection connection = Jsoup.connect(url).userAgent(USER_AGENT);
             Document htmlDocument = connection.get();
+            if (connection.response().statusCode() == 404)
+            {
+                throw new PageNotFoundException("Page does not exist: " + url);
+            }
             linksOnPage = htmlDocument.select("a[href]");
         } catch(IOException ioe) {
             logger.info("Error in out HTTP request " + ioe);
@@ -53,7 +57,7 @@ public class Leg {
      * Perform a crawl to search for all links
      * @param url page to search
      */
-    public void doCrawl(String url) {
+    public void doCrawl(String url) throws PageNotFoundException{
         addLinksToList(crawl(url));
     }
 

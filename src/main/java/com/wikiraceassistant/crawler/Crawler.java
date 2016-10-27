@@ -25,8 +25,12 @@ public class Crawler {
         String url = createWikipediaUrl(page);
         links.setSourceUrl(url);
         Leg leg = new Leg();
-        leg.doCrawl(url);
-        links.setLinks(leg.getLinks());
+        try {
+            leg.doCrawl(url);
+            links.setLinks(leg.getLinks());
+        } catch (PageNotFoundException e) {
+            links.setLinks(null);
+        }
     }
 
     /**
