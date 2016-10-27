@@ -19,13 +19,25 @@ public class Crawler {
 
     /**
      * Performs search using Leg
-     * @param url Page url to search
+     * @param page Page name to search
      */
-    public void search(String url) {
+    public void search(String page) {
+        String url = createWikipediaUrl(page);
         links.setSourceUrl(url);
         Leg leg = new Leg();
         leg.doCrawl(url);
         links.setLinks(leg.getLinks());
+    }
+
+    /**
+     * Takes the page name, replaces the spaces with
+     * underscores, and appends it to the rest of the
+     * url
+     * @param title Page title, with spaces or underscores as delimeters
+     * @return URL of the wikipedia page with that title
+     */
+    private String createWikipediaUrl(String title) {
+        return "https://en.wikipedia.org/wiki/" + title.replace(' ', '_');
     }
 
     /**

@@ -15,11 +15,11 @@ import java.util.*;
  * @author Sebastian Greenholtz
  */
 public class Leg {
+    private List<Link> links;
+    private String sourceUrl;
+    private final Logger logger = Logger.getLogger(this.getClass());
     private static final String USER_AGENT =
             "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.112 Safari/535.1";
-    private List<Link> links;
-    private Document htmlDocument;
-    private final Logger logger = Logger.getLogger(this.getClass());
 
     /**
      * Empty constructor
@@ -31,16 +31,17 @@ public class Leg {
     /**
      * Brings up a given webpage and searches for links on the page
      * TODO: Return error if the page doesn't exist
+     * TODO: Filter results at this step
      * @param url page to search
      * @return list of links found on the page
      */
     private Elements crawl(String url) {
+        sourceUrl = url;
         Elements linksOnPage = null;
         try {
             Connection connection = Jsoup.connect(url).userAgent(USER_AGENT);
             Document htmlDocument = connection.get();
-            this.htmlDocument = htmlDocument;
-            linksOnPage = htmlDocument.select("a[href*=https:\\/\\/en.wikipedia.org\\/]");
+            linksOnPage = htmlDocument.select("a[href]");
         } catch(IOException ioe) {
             logger.info("Error in out HTTP request " + ioe);
             logger.error(ioe.getStackTrace());
@@ -62,11 +63,34 @@ public class Leg {
      */
     private void addLinksToList(Elements elements) {
         for(Element element : elements) {
-            Link link = new Link();
-            link.setTitle(element.attr("title"));
-            link.setUrl(element.absUrl("href"));
-            links.add(link);
+            String url = element.absUrl("href");
+            if (isContentPage(url)) {
+                Link link = new Link();
+                link.setTitle(element.attr("title"));
+                link.setUrl(element.absUrl("href"));
+                links.add(link);
+            }
         }
+    }
+
+    /**
+     * Checks a series of conditions to see if this url
+     * represents a real content page (ie not a Wikipedia organization
+     * page)
+     * @param url link url
+     * @return true if this is a valid content page
+     */
+    private boolean isContentPage(String url) {
+        if (!url.startsWith("https://en.wikipedia.org/wiki/")) {
+            return false;
+        } else if (url.matches("https:\\/\\/en\\.wikipedia\\.org\\/wiki\\/.+:.*")) {
+            return false;
+        } else if (url.contains("Main_Page")) {
+            return false;
+        } else if (url.startsWith(sourceUrl)) {
+            return false;
+        }
+        return true;
     }
 
     /**
