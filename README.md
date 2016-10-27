@@ -7,3 +7,4 @@ Web service scrapes Wikipedia to find all the links on the page to help you with
 - front end
 - accept the keyword and make into link to search
 - error message
+- only search for links in the body of the wikipedia page

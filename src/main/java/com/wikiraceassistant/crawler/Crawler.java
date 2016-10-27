@@ -48,4 +48,10 @@ public class Crawler {
             this.pagesToVisit.addAll(leg.getLinks());
         }
     }
+
+    public void search(String url) {
+        Leg leg = new Leg();
+        leg.plainCrawl(url);
+        pagesToVisit = leg.getLinks();
+    }
 }

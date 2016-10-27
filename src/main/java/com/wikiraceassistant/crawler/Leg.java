@@ -40,9 +40,6 @@ public class Leg {
             Connection connection = Jsoup.connect(url).userAgent(USER_AGENT);
             Document htmlDocument = connection.get();
             this.htmlDocument = htmlDocument;
-
-//            logger.info("Received web page at " + url);
-
             linksOnPage = htmlDocument.select("a[href]");
         } catch(IOException ioe) {
             logger.info("Error in out HTTP request " + ioe);
@@ -103,7 +100,6 @@ public class Leg {
             logger.info("ERROR! Call crawl() before performing analysis on the document");
             return false;
         }
-//        logger.info("Searching for the word " + searchWord + "...");
         String bodyText = this.htmlDocument.body().text();
         if (bodyText.toLowerCase().contains(searchWord.toLowerCase())) {
             for (Element text : htmlDocument.body().getElementsContainingOwnText(searchWord)) {

@@ -38,31 +38,31 @@ public class KeywordCrawler extends Crawler {
         search(searchKeyword);
     }
 
-    /**
-     * Searches for a given word in the list of keyword links
-     * @param keyword word to do the search on
-     */
-    private void search(String keyword)
-    {
-        while(this.pagesVisited.size() < MAX_PAGES_TO_SEARCH)
-        {
-            String currentUrl;
-            Leg leg = new Leg();
-            if(this.pagesToVisit.isEmpty()) {
-                logger.info("No valid links found.");
-                break;
-            } else {
-                currentUrl = this.nextUrl();
-            }
-
-            leg.searchCrawl(currentUrl, keyword);
-
-            if(leg.searchForWord(keyword)) {
-                logger.info(leg.getKeywordText());
-            }
-            this.pagesToVisit.addAll(leg.getLinks());
-        }
-    }
+//    /**
+//     * Searches for a given word in the list of keyword links
+//     * @param keyword word to do the search on
+//     */
+//    private void search(String keyword)
+//    {
+//        while(this.pagesVisited.size() < MAX_PAGES_TO_SEARCH)
+//        {
+//            String currentUrl;
+//            Leg leg = new Leg();
+//            if(this.pagesToVisit.isEmpty()) {
+//                logger.info("No valid links found.");
+//                break;
+//            } else {
+//                currentUrl = this.nextUrl();
+//            }
+//
+//            leg.searchCrawl(currentUrl, keyword);
+//
+//            if(leg.searchForWord(keyword)) {
+//                logger.info(leg.getKeywordText());
+//            }
+//            this.pagesToVisit.addAll(leg.getLinks());
+//        }
+//    }
 
     /**
      * Gets the value of linkText.
