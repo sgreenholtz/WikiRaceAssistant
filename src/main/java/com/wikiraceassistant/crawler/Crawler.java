@@ -22,8 +22,9 @@ public class Crawler {
      * @param url Page url to search
      */
     public void search(String url) {
+        links.setSourceUrl(url);
         Leg leg = new Leg();
-        leg.plainCrawl(url);
+        leg.doCrawl(url);
         links.setLinks(leg.getLinks());
     }
 

@@ -25,12 +25,12 @@ public class Leg {
      * Empty constructor
      */
     public Leg() {
-       links = new LinkedList<String>();
-        keywordText = new ArrayList<String>();
+       links = new LinkedList<>();
     }
 
     /**
      * Brings up a given webpage and searches for links on the page
+     * TODO: Return error if the page doesn't exist
      * @param url page to search
      * @return list of links found on the page
      */
@@ -49,43 +49,23 @@ public class Leg {
     }
 
     /**
-     * Perform a crawl to search for links with the given search term
-     * @param url page to search
-     * @param searchTerm word to search for
-     */
-    public void searchCrawl(String url, String searchTerm) {
-        addLinksToList(crawl(url), searchTerm);
-    }
-
-    /**
      * Perform a crawl to search for all links
      * @param url page to search
      */
-    public void plainCrawl(String url) {
+    public void doCrawl(String url) {
         addLinksToList(crawl(url));
     }
 
     /**
      * Adds the links found on a page to the list of links.
-     * @param links All links on a page
+     * @param elements All links on a page
      */
-    private void addLinksToList(Elements links) {
-        for(Element link : links) {
-            this.links.add(link.absUrl("href"));
-        }
-    }
-
-    /**
-     * Adds the links found on a page to the list of links if they contain the
-     * given search term.
-     * @param links All links on a page
-     * @param searchTerm term to search for
-     */
-    private void addLinksToList(Elements links, String searchTerm) {
-        for(Element link : links) {
-            if (link.absUrl("href").toLowerCase().contains(searchTerm.toLowerCase())) {
-                this.links.add(link.absUrl("href"));
-            }
+    private void addLinksToList(Elements elements) {
+        for(Element element : elements) {
+            Link link = new Link();
+            link.setTitle(element.attr("title"));
+            link.setUrl(element.absUrl("href"));
+            links.add(link);
         }
     }
 
