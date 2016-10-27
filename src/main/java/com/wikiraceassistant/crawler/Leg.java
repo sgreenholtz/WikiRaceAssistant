@@ -40,7 +40,7 @@ public class Leg {
             Connection connection = Jsoup.connect(url).userAgent(USER_AGENT);
             Document htmlDocument = connection.get();
             this.htmlDocument = htmlDocument;
-            linksOnPage = htmlDocument.select("a[href]");
+            linksOnPage = htmlDocument.select("a[href*=https:\\/\\/en.wikipedia.org\\/]");
         } catch(IOException ioe) {
             logger.info("Error in out HTTP request " + ioe);
             logger.error(ioe.getStackTrace());
