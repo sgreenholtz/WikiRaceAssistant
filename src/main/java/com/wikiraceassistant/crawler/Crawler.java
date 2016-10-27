@@ -28,6 +28,14 @@ public class Crawler {
         links.setLinks(leg.getLinks());
     }
 
+    /**
+     * Gets the value of links.
+     * @return links
+     */
+    public Links getLinks() {
+        return links;
+    }
+
     //TODO: Take in a page title (ie. gapes valley, as opposed to gapes_valley) and create the URL to search
     //TODO: Return error if the page doesn't exist
 }

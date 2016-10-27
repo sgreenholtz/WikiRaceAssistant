@@ -58,4 +58,12 @@ public class Link {
     public void setUrl(String url) {
         this.url = url;
     }
+
+    @Override
+    public String toString() {
+        return "Link{" +
+                "title='" + title + '\'' +
+                ", url='" + url + '\'' +
+                '}';
+    }
 }

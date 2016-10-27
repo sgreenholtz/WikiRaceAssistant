@@ -60,4 +60,17 @@ public class Links {
     public void setLinks(List<Link> links) {
         this.links = links;
     }
+
+    @Override
+    public String toString() {
+        String out = "Links:" + System.lineSeparator()
+                + "sourceUrl='" + sourceUrl + '\'' + System.lineSeparator()
+                + "links:";
+
+        for (Link link : links) {
+            out += link.toString() + System.lineSeparator();
+        }
+
+        return out;
+    }
 }
