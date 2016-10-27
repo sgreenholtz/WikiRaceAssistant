@@ -7,6 +7,7 @@ package com.wikiraceassistant.crawler;
 public class CrawlerTest {
     public static void main(String[] args) {
         Crawler crawler = new Crawler();
-        crawler.search("http://isthmus.com/search/event/calendar-of-events/", "jazz");
+        crawler.search("https://en.wikipedia.org/wiki/Adolf_Hitler", "Nazi");
+        System.out.println(crawler.pagesToVisit);
     }
 }
