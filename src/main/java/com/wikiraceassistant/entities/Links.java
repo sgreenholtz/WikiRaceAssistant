@@ -11,6 +11,21 @@ public class Links {
     private List<Link> links;
 
     /**
+     * Empty constructor
+     */
+    public Links() {}
+
+    /**
+     * Set instance vars
+     * @param sourceUrl String the original page link
+     * @param links List<Link>
+     */
+    public Links(String sourceUrl, List<Link> links) {
+        this.sourceUrl = sourceUrl;
+        this.links = links;
+    }
+
+    /**
      * Gets the value of sourceUrl.
      *
      * @return sourceUrl
