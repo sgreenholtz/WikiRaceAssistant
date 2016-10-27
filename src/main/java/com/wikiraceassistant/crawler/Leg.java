@@ -1,5 +1,6 @@
 package com.wikiraceassistant.crawler;
 
+import com.wikiraceassistant.entities.Link;
 import org.apache.log4j.Logger;
 import org.jsoup.*;
 import org.jsoup.nodes.*;
@@ -16,9 +17,8 @@ import java.util.*;
 public class Leg {
     private static final String USER_AGENT =
             "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.112 Safari/535.1";
-    private List<String> links;
+    private List<Link> links;
     private Document htmlDocument;
-    private List<String> keywordText;
     private final Logger logger = Logger.getLogger(this.getClass());
 
     /**
@@ -90,41 +90,11 @@ public class Leg {
     }
 
     /**
-     * Searches for a given word on the web page
-     * @param searchWord word to search for
-     * @return true if the page contains the word
-     */
-    public boolean searchForWord(String searchWord)
-    {
-        if(this.htmlDocument == null) {
-            logger.info("ERROR! Call crawl() before performing analysis on the document");
-            return false;
-        }
-        String bodyText = this.htmlDocument.body().text();
-        if (bodyText.toLowerCase().contains(searchWord.toLowerCase())) {
-            for (Element text : htmlDocument.body().getElementsContainingOwnText(searchWord)) {
-                logger.info(text.parent());
-                keywordText.add(text.text());
-            }
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    /**
      * Gets the links found on the page
      * @return links List of links found on the page searched
      */
-    public List<String> getLinks() {
+    public List<Link> getLinks() {
         return links;
     }
 
-    /**
-     * Gets the text in keywordText.
-     * @return keywordText
-     */
-    public List<String> getKeywordText() {
-        return keywordText;
-    }
 }

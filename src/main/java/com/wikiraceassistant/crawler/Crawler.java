@@ -1,57 +1,32 @@
 package com.wikiraceassistant.crawler;
 
-import java.util.*;
+import com.wikiraceassistant.entities.Links;
 
 /**
- * Simple eventspider.crawler patterned on tutorial from http://www.netinstructions.com/how-to-make-a-simple-web-crawler-in-java/
+ * Simple crawler patterned on <a href="http://www.netinstructions.com/how-to-make-a-simple-web-crawler-in-java/" >this tutorial</a>
  * @author Sebastian Greenholtz
  */
 public class Crawler {
-    protected static final int MAX_PAGES_TO_SEARCH = 25;
-    protected Set<String> pagesVisited = new HashSet<String>();
-    protected List<String> pagesToVisit = new LinkedList<String>();
+
+    protected Links links;
 
     /**
-     * Gets the next URL to visit from pagesToVisit that hasn't already
-     * been visited
-     * @return next URL to search
+     * Empty constructor
      */
-    protected String nextUrl() {
-        String nextUrl;
-        do {
-            nextUrl = this.pagesToVisit.remove(0);
-        } while(this.pagesVisited.contains(nextUrl));
-
-        this.pagesVisited.add(nextUrl);
-        return nextUrl;
+    public Crawler() {
+        links = new Links();
     }
 
     /**
-     * Searches for a given word on the website at give URL
-     * @param url page to search
-     * @param searchWord word to search for
+     * Performs search using Leg
+     * @param url Page url to search
      */
-    public void search(String url, String searchWord)
-    {
-        while(this.pagesVisited.size() < MAX_PAGES_TO_SEARCH)
-        {
-            String currentUrl;
-            Leg leg = new Leg();
-            if(this.pagesToVisit.isEmpty()) {
-                currentUrl = url;
-                this.pagesVisited.add(url);
-            } else {
-                currentUrl = this.nextUrl();
-            }
-
-            leg.plainCrawl(currentUrl);
-            this.pagesToVisit.addAll(leg.getLinks());
-        }
-    }
-
     public void search(String url) {
         Leg leg = new Leg();
         leg.plainCrawl(url);
-        pagesToVisit = leg.getLinks();
+        links.setLinks(leg.getLinks());
     }
+
+    //TODO: Take in a page title (ie. gapes valley, as opposed to gapes_valley) and create the URL to search
+    //TODO: Return error if the page doesn't exist
 }
