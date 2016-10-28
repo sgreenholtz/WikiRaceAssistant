@@ -7,6 +7,8 @@
     <groupId>com.wikiraceassistant</groupId>
     <artifactId>WikiRaceAssistant</artifactId>
     <version>1.0</version>
+    <packaging>war</packaging>
+    <name>WikiRaceAssistant</name>
 
     <build>
         <plugins>

@@ -13,7 +13,7 @@ import javax.ws.rs.core.Response;
  * Rest controller to get a page from Wikipedia
  * @author Sebastian Greenholtz
  */
-@Path("/pages")
+@Path("/links")
 public class WikiPage {
 
 //    @GET
