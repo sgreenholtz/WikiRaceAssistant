@@ -41,11 +41,9 @@ public class Leg {
         try {
             Connection connection = Jsoup.connect(url).userAgent(USER_AGENT);
             Document htmlDocument = connection.get();
-            if (connection.response().statusCode() == 404)
-            {
-                throw new PageNotFoundException("Page does not exist: " + url);
-            }
             linksOnPage = htmlDocument.select("a[href]");
+        } catch (HttpStatusException e) {
+            throw new PageNotFoundException("Page does not exist: " + url);
         } catch(IOException ioe) {
             logger.info("Error in out HTTP request " + ioe);
             logger.error(ioe.getStackTrace());
