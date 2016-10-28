@@ -16,12 +16,21 @@ import javax.ws.rs.core.Response;
 @Path("/pages")
 public class WikiPage {
 
+//    @GET
+//    @Path("{page}")
+//    @Produces("text/json")
+//    public Response getLinkList(@PathParam("page") String page) {
+//        Crawler crawler = new Crawler();
+//        crawler.search(page);
+//        String json = JSONParser.parse(crawler.getLinks());
+//        return constructResponse(json);
+//    }
+
     @GET
-    @Path("{page}")
     @Produces("text/json")
-    public Response getLinkList(@PathParam("page") String page) {
+    public Response getAllEvents() {
         Crawler crawler = new Crawler();
-        crawler.search(page);
+        crawler.search("Panda");
         String json = JSONParser.parse(crawler.getLinks());
         return constructResponse(json);
     }

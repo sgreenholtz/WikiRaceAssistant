@@ -14,7 +14,7 @@ public class WikiRaceApplication extends Application {
     @Override
     public Set<Class<?>> getClasses() {
         HashSet h = new HashSet<Class<?>>();
-        h.add(WikiPage.class);
+        h.add(WikiPage.class );
         return h;
     }
 }
