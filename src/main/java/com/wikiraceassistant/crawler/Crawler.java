@@ -34,10 +34,9 @@ public class Crawler {
     }
 
     /**
-     * Takes the page name, replaces the spaces with
-     * underscores, and appends it to the rest of the
-     * url
-     * @param title Page title, with spaces or underscores as delimeters
+     * Takes the page name, replaces the spaces with underscores, and appends
+     *  it to the rest of the url
+     * @param title Page title, with spaces or underscores as delimiters
      * @return URL of the wikipedia page with that title
      */
     private String createWikipediaUrl(String title) {

@@ -89,7 +89,7 @@ public class Leg {
             return false;
         } else if (url.contains("Main_Page")) {
             return false;
-        } else if (url.startsWith(sourceUrl)) {
+        } else if (url.toLowerCase().startsWith(sourceUrl.toLowerCase())) {
             return false;
         }
         return true;
