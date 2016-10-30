@@ -28,7 +28,7 @@ public class Crawler {
         try {
             leg.doCrawl(url);
             links.setLinks(leg.getLinks());
-        } catch (PageNotFoundException e) {
+        } catch (Exception e) {
             links.setLinks(null);
         }
     }

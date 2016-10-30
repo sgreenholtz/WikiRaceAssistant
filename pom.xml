@@ -7,7 +7,10 @@
     <groupId>com.wikiraceassistant</groupId>
     <artifactId>WikiRaceAssistant</artifactId>
     <version>1.0</version>
-    <packaging>war</packaging>
+    <modules>
+        <module>JSTL</module>
+    </modules>
+    <packaging>pom</packaging>
     <name>WikiRaceAssistant</name>
 
     <build>
@@ -90,10 +93,14 @@
             <version>1.2.17</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/commons-lang/commons-lang -->
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.6</version>
+        </dependency>
+
+
     </dependencies>
-
-
-
-
 
 </project>

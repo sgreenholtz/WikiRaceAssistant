@@ -10,7 +10,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
 /**
- * Rest controller to get a page from Wikipedia
+ * Rest controller to get a page from Wikipedia. Returns a 404 error
+ * if the page does not exist in Wikipedia, even though Wikipedia has their own error
+ * page for errors.
  * @author Sebastian Greenholtz
  */
 @Path("/links")
@@ -22,16 +24,17 @@ public class WikiPage {
     public Response getLinkList(@PathParam("page") String page) {
         Crawler crawler = new Crawler();
         crawler.search(page);
-        String json = JSONParser.parse(crawler.getLinks());
-        return constructResponse(json);
+        if (crawler.getLinks().getLinks() == null) {
+            return constructResponse(404);
+        } else {
+            String json = JSONParser.parse(crawler.getLinks());
+            return constructResponse(json);
+        }
+
     }
 
     private Response constructResponse(String json) {
-        if (json != null) {
-            return Response.status(200).entity(json).build();
-        } else {
-            return constructResponse(404);
-        }
+        return Response.status(200).entity(json).build();
     }
 
     private Response constructResponse(Integer error) {
