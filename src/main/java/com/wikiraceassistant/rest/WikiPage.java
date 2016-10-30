@@ -29,10 +29,9 @@ public class WikiPage {
     @GET
     @Produces("text/json")
     public Response getAllEvents() {
-//        Crawler crawler = new Crawler();
-//        crawler.search("Panda");
-//        String json = JSONParser.parse(crawler.getLinks());
-        String json = "{'hello':'world'}";
+        Crawler crawler = new Crawler();
+        crawler.search("Panda");
+        String json = JSONParser.parse(crawler.getLinks());
         return constructResponse(json);
     }
 
