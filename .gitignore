@@ -2,4 +2,4 @@
 .idea/
 target/
 out/
-src/main/resources/log4j.properties
+wikirace/src/main/resources/log4j.properties
