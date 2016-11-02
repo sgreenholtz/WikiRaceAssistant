@@ -3,8 +3,3 @@
 target/
 out/
 src/main/resources/log4j.properties
-JSTL/JSTL.iml
-JSTL/target/classes/
-JSTL/target/generated-sources/
-JSTL/target/maven-archiver/
-JSTL/target/maven-status/
