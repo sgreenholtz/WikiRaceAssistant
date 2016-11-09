@@ -1,10 +1,11 @@
 # WikiRaceAssistant
 Web service scrapes Wikipedia to find all the links on the page to help you with Wiki Race-ing
 
+## TODO List
 - unit test to test the service
 - make sure it only searches once
-- format response as a JSON
-- front end
-- accept the keyword and make into link to search
+- ~~format response as a JSON~~
+- ~~front end~~
+- ~~accept the keyword and make into link to search~~
 - error message
-- only search for links in the body of the wikipedia page
+- ~~only search for links in the body of the wikipedia page~~
