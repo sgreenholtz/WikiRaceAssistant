@@ -11,7 +11,8 @@ Web service scrapes Wikipedia to find all the links on the page to help you with
 - ~~only search for links in the body of the wikipedia page~~
 
 ## User Guide
-All API access is through "http://localhost:8080/links/". To search for links on a Wikipedia page, add the last of the part of the Wikipedia URL to the end of the API URL. See the example below.
+All API access is through "http://localhost:8080/links/". To search for links on a Wikipedia page, add the last of the part of the Wikipedia URL to the end of the API URL. The API returns a list of links in JSON format. See the example below.
+ 
 
 Example:
 URL: http://localhost:8080/links/panda
