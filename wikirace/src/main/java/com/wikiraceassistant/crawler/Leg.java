@@ -29,13 +29,22 @@ public class Leg {
     }
 
     /**
+     * Protected constructor adds URL at construction
+     * @param url
+     */
+    protected Leg(String url) {
+        this();
+        this.sourceUrl = url;
+    }
+
+    /**
      * Brings up a given webpage and searches for links on the page
      * TODO: Return error if the page doesn't exist
      * TODO: Filter results at this step
      * @param url page to search
      * @return list of links found on the page
      */
-    private Elements crawl(String url) throws PageNotFoundException{
+    protected Elements crawl(String url) throws PageNotFoundException{
         sourceUrl = url;
         Elements linksOnPage = null;
         try {
@@ -63,7 +72,7 @@ public class Leg {
      * Adds the links found on a page to the list of links.
      * @param elements All links on a page
      */
-    private void addLinksToList(Elements elements) {
+    protected void addLinksToList(Elements elements) {
         for(Element element : elements) {
             String url = element.absUrl("href");
             if (isContentPage(url)) {
@@ -102,5 +111,7 @@ public class Leg {
     public List<Link> getLinks() {
         return links;
     }
+
+
 
 }
