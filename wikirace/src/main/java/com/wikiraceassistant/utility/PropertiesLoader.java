@@ -2,8 +2,7 @@ package com.wikiraceassistant.utility;
 
 import org.apache.log4j.Logger;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.Properties;
 
 /**
@@ -15,13 +14,13 @@ public class PropertiesLoader {
     public static final Logger logger = Logger.getLogger(PropertiesLoader.class);
 
     public static Properties getProperties() {
-        Properties properties = null;
-        try (InputStream in = PropertiesLoader.class.getResourceAsStream("application.properties")) {
+        Properties properties = new Properties();
+        try (InputStream in = PropertiesLoader.class.getClassLoader().getResourceAsStream("application.properties")) {
             properties.load(in);
         } catch (IOException e) {
             logger.error(e);
-        } catch (NullPointerException e) {
-            logger.error("Properties file not found at given location: " + e);
+        } catch (Exception e) {
+            logger.error(e);
         }
         return properties;
     }
