@@ -1,6 +1,9 @@
 package com.wikiraceassistant.crawler;
 
 import com.wikiraceassistant.entities.Links;
+import com.wikiraceassistant.utility.PropertiesLoader;
+
+import java.util.Properties;
 
 /**
  * Simple crawler patterned on <a href="http://www.netinstructions.com/how-to-make-a-simple-web-crawler-in-java/" >this tutorial</a>
@@ -9,6 +12,7 @@ import com.wikiraceassistant.entities.Links;
 public class Crawler {
 
     protected Links links;
+    private static Properties properties = PropertiesLoader.getProperties();
 
     /**
      * Empty constructor
@@ -40,7 +44,7 @@ public class Crawler {
      * @return URL of the wikipedia page with that title
      */
     private String createWikipediaUrl(String title) {
-        return "https://en.wikipedia.org/wiki/" + title.replace(' ', '_');
+        return properties.getProperty("wiki.url") + title.replace(' ', '_');
     }
 
     /**

@@ -1,6 +1,7 @@
 package com.wikiraceassistant.crawler;
 
 import com.wikiraceassistant.entities.Link;
+import com.wikiraceassistant.utility.PropertiesLoader;
 import org.apache.log4j.Logger;
 import org.jsoup.*;
 import org.jsoup.nodes.*;
@@ -18,8 +19,7 @@ public class Leg {
     private List<Link> links;
     private String sourceUrl;
     private final Logger logger = Logger.getLogger(this.getClass());
-    private static final String USER_AGENT =
-            "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.112 Safari/535.1";
+    private static Properties properties = PropertiesLoader.getProperties();
 
     /**
      * Empty constructor
@@ -48,7 +48,7 @@ public class Leg {
         sourceUrl = url;
         Elements linksOnPage = null;
         try {
-            Connection connection = Jsoup.connect(url).userAgent(USER_AGENT);
+            Connection connection = Jsoup.connect(url).userAgent(properties.getProperty("user.agent"));
             Document htmlDocument = connection.get();
             linksOnPage = htmlDocument.select("a[href]");
         } catch (HttpStatusException e) {
@@ -92,7 +92,7 @@ public class Leg {
      * @return true if this is a valid content page
      */
     private boolean isContentPage(String url) {
-        if (!url.startsWith("https://en.wikipedia.org/wiki/")) {
+        if (!url.startsWith(properties.getProperty("wiki.url"))) {
             return false;
         } else if (url.matches("https:\\/\\/en\\.wikipedia\\.org\\/wiki\\/.+:.*")) {
             return false;
