@@ -1,27 +1,24 @@
 package com.wikiraceassistant.crawler;
 
+import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 /**
- * Created by 2-13-13 on 11/13/2016.
+ * @author Austin Chappell
  */
 public class CrawlerUnitTest {
-    @Before
-    public void setUp() throws Exception {
-        Crawler crawler = new Crawler();
-    }
+
+    private final Logger logger = Logger.getLogger(this.getClass());
+
 
     @Test
     public void searchTest() throws Exception {
-
-    }
-
-    @Test
-    public void getLinksTest() throws Exception {
-
+        Crawler crawler = new Crawler();
+        crawler.search("Stoneycroft");
+        assertEquals(119, crawler.getLinks().getLinks().size());
     }
 
 }
