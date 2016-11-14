@@ -26,6 +26,13 @@
     </div>
 
     <div class="container">
+        <div id="errorContainer" class="row hidden">
+            <div class="col-xs-12">
+                <div class="alert alert-danger" role="alert">
+                    <strong>Oh no!</strong> The url you entered is invalid.
+                </div>
+            </div>
+        </div>
 
         <form>
             <div class="form-group row">

@@ -37,6 +37,7 @@
     // Makes Ajax call to REST service and displays the results on the
     // web page.
     function getResultsByUrl(searchTerm) {
+        $('#errorContainer').addClass("hidden");
         var url = restURL + searchTerm;
         console.log(url);
         var list = $('<ul>');
@@ -61,6 +62,12 @@
                     });
                     $('<li>').html(aLink).appendTo(list);
 
+                }
+            },
+
+            error: function(xhr, ajaxOptions, thrownError) {
+                if (xhr.status == 404) {
+                    $('#errorContainer').removeClass("hidden");
                 }
             }
 
