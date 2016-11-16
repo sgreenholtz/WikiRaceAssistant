@@ -1,8 +1,6 @@
-// TODO add click counter
-// TODO random article
-// TODO add styles
-
-
+/* Front End example for Wiki Racing.
+* Author - Austin Chappell amchappell9@gmail.com
+ */
 (function($) {
     const restURL = "http://138.68.1.193:8080/WikiRaceAssistant-1.0/links/";
 
@@ -103,10 +101,9 @@
 
 
 
-    // Test functions
+    // Test functions, for development only
     function testFun(object) {
         // Gets url from link tag that was clicked.
-        // TODO use URL to make new call and display results
         var objectId = object.id;
         $('#' + objectId);
         console.log($('#' + objectId).data("url"));
