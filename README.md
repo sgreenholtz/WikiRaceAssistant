@@ -1,10 +1,10 @@
 # WikiRaceAssistant
 
 ## Problem Statement
-Wiki racing is a popular game that consists of moving from one page to another only using links on the page. It is difficult to find all the links on the page, as they are surrounded by other text.
+Wiki Racing is a popular game that consists of moving from one specific wikipedia page to another specific page by only using links on the wikipedia pages. The problem is that it is difficult to find all the links on the page, as they are surrounded by other useless text.
 
 ## Project Objectives
-To make a service that takes a wikipedia url and returns all the links on the page to make wiki racing easier.
+To make a service that takes a wikipedia url and returns only the links from the page to make Wiki Racing easier.
 
 ## User Guide
 All API access is through "http://localhost:8080/links/". To search for links on a Wikipedia page, add the last of the part of the Wikipedia URL to the end of the API URL. The API returns a list of links in JSON format. See the example below.
