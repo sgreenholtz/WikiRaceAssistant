@@ -4,7 +4,7 @@
 
 
 (function($) {
-    const restURL = "http://localhost:8080/links/";
+    const restURL = "http://138.68.1.193:8080/WikiRaceAssistant-1.0/links/";
 
 
 
