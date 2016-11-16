@@ -1,14 +1,10 @@
 # WikiRaceAssistant
-Web service scrapes Wikipedia to find all the links on the page to help you with Wiki Race-ing
 
-## TODO List
-- ~~unit test to test the service~~
-- make sure it only searches once
-- ~~format response as a JSON~~
-- ~~front end~~
-- ~~accept the keyword and make into link to search~~
-- ~~error message~~
-- ~~only search for links in the body of the wikipedia page~~
+## Problem Statement
+Wiki racing is a popular game that consists of moving from one page to another only using links on the page. It is difficult to find all the links on the page, as they are surrounded by other text.
+
+## Project Objectives
+To make a service that takes a wikipedia url and returns all the links on the page to make wiki racing easier.
 
 ## User Guide
 All API access is through "http://localhost:8080/links/". To search for links on a Wikipedia page, add the last of the part of the Wikipedia URL to the end of the API URL. The API returns a list of links in JSON format. See the example below.
@@ -65,3 +61,8 @@ JSON Response:
 ```
 
 If the passed URL is invalid, the API will respond with a 404 error.
+
+## Progress log
+- Backend java logic and REST service done by Sebastian
+- Frontend work done by Austin
+- Unit tests by Austin and Sebastian
